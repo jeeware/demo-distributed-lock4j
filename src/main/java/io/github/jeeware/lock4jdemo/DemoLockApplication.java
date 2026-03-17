@@ -20,20 +20,19 @@ public class DemoLockApplication {
 
     static final Logger log = LoggerFactory.getLogger(DemoLockApplication.class);
 
-    final CounterRepository counterRepository;
+    private final CounterRepository counterRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(DemoLockApplication.class, args);
     }
 
-
-    @Scheduled(fixedRate = 2000)
+    @Scheduled(cron = "*/1 * * * * *")
     @DistributedLock(mode = DistributedLock.Mode.TRY_LOCK)
     public void chronometer() throws InterruptedException {
-        final Counter counter = counterRepository.findById("test").orElseGet(() -> new Counter("test", 0));
-        counterRepository.save(counter.increment());
+        final Counter counter = counterRepository.findById("test").orElseGet(() -> new Counter("test", 0, null));
         log.info(">>>> Increment counter={}", counter);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.MILLISECONDS.sleep(2000L);
+        counterRepository.save(counter.increment());
     }
 
 }
