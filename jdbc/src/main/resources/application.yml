@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: demo-lock-jdbc
+  sql:
+    init:
+      mode: always
+      platform: oracle # only for oracle
+      separator: ;;
+  datasource:
+    # ORACLE
+    url: jdbc:oracle:thin:@localhost:1521/XEPDB1
+    username: test
+    password: my@Passw0rd
+    # MYSQL
+#    url: jdbc:mysql://localhost:3306/counters?createDatabaseIfNotExist=true
+#    username: root
+#    password: my@Passw0rd
+    # POSTGRES
+#    url: jdbc:postgresql://localhost:5432/postgres
+#    username: postgres
+#    password: postgres
+server:
+  port: 0
+
+
+#logging:
+#    level:
+#      io.github.jeeware.cloud.lock4j: trace
+
+cloud:
+  lock4j:
+    instance-id: demo-${random.uuid}
+#    mongo:
+#      collection-name: my-locks

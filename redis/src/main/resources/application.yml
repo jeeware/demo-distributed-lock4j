@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: demo-lock-redis
+  redis:
+    password: myp@ssw0rd
+    port: 6379
+
+server:
+  port: 0
+
+
+#logging:
+#    level:
+#      io.github.jeeware.cloud.lock4j: trace
+
+cloud:
+  lock4j:
+    instance-id: demo-${random.uuid}
+#    mongo:
+#      collection-name: my-locks

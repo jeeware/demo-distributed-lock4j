@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: demo-lock-mongodb
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+
+server:
+  port: 0
+
+
+#logging:
+#    level:
+#      io.github.jeeware.cloud.lock4j: trace
+
+cloud:
+  lock4j:
+    instance-id: demo-${random.uuid}
+#    mongo:
+#      collection-name: my-locks
